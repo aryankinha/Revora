@@ -1,0 +1,365 @@
+/* ═══════════════════════════════════════════════════════
+   ProcessSteps — CSS Module
+   "Our Process" section with clickable step navigation
+   Dark / Orange theme
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Section ── */
+.section {
+  position: relative;
+  width: 100%;
+  background: #0a0a0a;
+  overflow: hidden;
+  padding: 7rem 2rem;
+}
+
+/* ── Header ── */
+.header {
+  max-width: 1320px;
+  margin: 0 auto 4rem;
+}
+
+.heading {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.12);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+
+.headingAccent {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.subRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 3px solid #f05a28;
+  padding-left: 12px;
+  flex-shrink: 0;
+}
+
+.badgeNum {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: monospace;
+}
+
+.badgeLabel {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.05em;
+}
+
+.subTitle {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.35;
+  max-width: 500px;
+}
+
+.subDesc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+  max-width: 220px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+/* ── Bento Grid ── */
+.bento {
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr 0.8fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 2px;
+  max-width: 1320px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ── Image cell (spans full left column) ── */
+.cellImage {
+  grid-row: 1 / 4;
+  background: linear-gradient(180deg, #141414, #0d0d0d);
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.imagePlaceholder {
+  width: 180px;
+  height: 220px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageGlow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 8px;
+  background: #f05a28;
+  filter: blur(20px);
+  border-radius: 50%;
+}
+
+.imageReflect {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(-1);
+  width: 180px;
+  height: 80px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), transparent);
+  border-radius: 12px;
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+.imageInner {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 10px;
+}
+
+.imageInnerDot {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Top-center: Platform Process + dots ── */
+.cellProcess {
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.processLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dotActive {
+  width: 24px;
+  border-radius: 999px;
+  background: #f05a28;
+  box-shadow: 0 0 8px rgba(240, 90, 40, 0.4);
+}
+
+/* ── Top-right: Arrows ── */
+.cellArrows {
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.arrowBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.arrowBtn:hover {
+  background: rgba(240, 90, 40, 0.1);
+  border-color: rgba(240, 90, 40, 0.3);
+  color: #f05a28;
+}
+
+/* ── Center: Step content (animated) ── */
+.cellContent {
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.stepTitle {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.stepBody {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.7;
+  max-width: 460px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ── Right: CTA ── */
+.cellCTA {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ctaBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f05a28;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.65rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px -4px rgba(240, 90, 40, 0.35);
+  transition: filter 0.2s;
+}
+
+.ctaBtn:hover {
+  filter: brightness(1.15);
+}
+
+.ctaLabel {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.25);
+  text-align: center;
+  line-height: 1.4;
+  max-width: 130px;
+}
+
+/* ── Bottom-center: Stat ── */
+.cellStat {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.statValue {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.statUnit {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.2);
+  margin-top: 6px;
+}
+
+/* ── Bottom-right: empty accent ── */
+.cellEmpty {
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ═══════════ Transitions for step content ═══════════ */
+.slideIn {
+  animation: slideIn 0.35s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══════════ Responsive ═══════════ */
+@media (max-width: 900px) {
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .cellImage {
+    grid-row: auto;
+    min-height: 250px;
+  }
+  .subRow {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .subDesc {
+    text-align: left;
+  }
+}

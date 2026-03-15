@@ -1,0 +1,197 @@
+/* ═══════════════════════════════════════════════════════
+   Milestones — CSS Module
+   "Our Milestones, your Advantage" stats section
+   Dark / Orange theme
+   ═══════════════════════════════════════════════════════ */
+
+.section {
+  position: relative;
+  width: 100%;
+  background: #060606;
+  overflow: hidden;
+  padding: 7rem 2rem;
+}
+
+/* Background glows */
+.glowA {
+  position: absolute;
+  top: -10%;
+  left: 30%;
+  width: 700px;
+  height: 700px;
+  background: rgba(240, 90, 40, 0.04);
+  border-radius: 50%;
+  filter: blur(150px);
+  pointer-events: none;
+}
+
+.glowB {
+  position: absolute;
+  bottom: -10%;
+  right: 20%;
+  width: 500px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.015);
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+/* ── Header ── */
+.header {
+  max-width: 1320px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.label::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.heading {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.headingItalic {
+  font-style: italic;
+  color: #f05a28;
+}
+
+.headingNormal {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.descDot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.descDotInner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f05a28;
+}
+
+/* ── Stats Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  max-width: 1320px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 2.5rem 2rem;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.card:hover .cardGlow {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.cardLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+.cardValue {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.cardValueAccent {
+  color: #f05a28;
+}
+
+.cardGlow {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  background: rgba(240, 90, 40, 0.06);
+  border-radius: 50%;
+  filter: blur(30px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+/* ═══════════ Responsive ═══════════ */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding: 1.75rem 1.5rem;
+  }
+  .cardValue {
+    font-size: 2.2rem;
+  }
+}

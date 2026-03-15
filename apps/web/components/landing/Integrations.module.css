@@ -1,0 +1,469 @@
+/* ═══════════════════════════════════════════════════════
+   Integrations — CSS Module  (v2 – matching reference)
+   Wide bento grid, large platform logo cards, footer CTA
+   Dark / Orange theme
+   ═══════════════════════════════════════════════════════ */
+
+.section {
+  position: relative;
+  width: 100%;
+  background: #060606;
+  overflow: hidden;
+  padding: 7rem 2rem 5rem;
+}
+
+/* subtle glow */
+.glow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(240, 90, 40, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ── Header (left label + center) ── */
+.header {
+  max-width: 1320px;
+  margin: 0 auto 3.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.labelCol {
+  flex-shrink: 0;
+  padding-top: 0.5rem;
+}
+
+.label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 8px;
+}
+
+.labelLine {
+  width: 30px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.headerText {
+  flex: 1;
+}
+
+.heading {
+  font-family: var(--font-syne), sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hi { font-style: italic; color: #f05a28; }
+.hn { font-style: normal; color: rgba(255, 255, 255, 0.8); }
+
+.desc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.28);
+  line-height: 1.65;
+  max-width: 440px;
+}
+
+/* ── Bento  3-col × 2-row ── */
+.bento {
+  display: grid;
+  grid-template-columns: 1.3fr 1.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 3px;
+  max-width: 860px;
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.cell {
+  background: rgba(255, 255, 255, 0.025);
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.cell:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Cell 1: Analytics Module  (spans 2 rows) ── */
+.cellAnalytics {
+  grid-row: 1 / 3;
+  justify-content: space-between;
+}
+
+.tag {
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.tagDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f05a28;
+}
+
+/* hexagonal snowflake icon */
+.hexGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2rem;
+}
+
+.hexRow {
+  display: flex;
+  gap: 4px;
+}
+
+.hex {
+  width: 22px;
+  height: 25px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: rgba(240, 90, 40, 0.12);
+  border: 1px solid rgba(240, 90, 40, 0.2);
+}
+
+.hexCenter {
+  background: rgba(240, 90, 40, 0.3);
+}
+
+.cellTitle {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.cellDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.28);
+  line-height: 1.5;
+}
+
+/* ── Cell 2: AI Model ── */
+.cellAI {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.aiSphere {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(240, 90, 40, 0.5),
+    rgba(255, 140, 80, 0.3),
+    rgba(240, 90, 40, 0.1),
+    rgba(255, 200, 160, 0.2),
+    rgba(240, 90, 40, 0.5)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  animation: spinSlow 8s linear infinite;
+  position: relative;
+}
+
+.aiSphere::after {
+  content: "AI";
+  font-family: var(--font-syne), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  background: #0d0d0d;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+
+.aiName {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.aiDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f05a28;
+  margin-top: 6px;
+}
+
+/* ── Cell 3: Templates ── */
+.cellTpl {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+}
+
+.tplLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.tplIcons {
+  display: flex;
+  gap: 8px;
+}
+
+.tplIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tplIconInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  width: 14px;
+  height: 14px;
+}
+
+.tplDot {
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tplBar {
+  width: 16px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1px;
+}
+
+/* ── Cell 4: Speed metrics ── */
+.cellSpeed {
+  justify-content: center;
+  gap: 10px;
+}
+
+.speedItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.speedTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.speedBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #f05a28;
+  background: rgba(240, 90, 40, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.speedText {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.speedBar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.speedFill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(240, 90, 40, 0.25), #f05a28);
+}
+
+/* ── Cell 5: Uptime ── */
+.cellUptime {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.uptimeIcon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 8px;
+  opacity: 0.15;
+}
+
+.uptimeVal {
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1;
+}
+
+.uptimePct {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Platforms section ── */
+.platforms {
+  max-width: 860px;
+  margin: 4rem auto 0;
+}
+
+.logoArea {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  align-items: start;
+  gap: 2rem;
+}
+
+.platText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.5;
+  text-align: left;
+}
+
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 56px);
+  gap: 20px 32px;
+}
+
+.logoCard {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+}
+
+.logoCard:hover {
+  border-color: rgba(240, 90, 40, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.logoImg {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+/* ── Footer / CTA ── */
+.footerDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 2.5rem 0;
+}
+
+.footerArea {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footerBtnWrap {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.footerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f05a28;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px -4px rgba(240, 90, 40, 0.35);
+  transition: filter 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+
+.footerBtn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+/* ═══════════ Responsive ═══════════ */
+@media (max-width: 768px) {
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .cellAnalytics { grid-row: auto; }
+  .header { flex-direction: column; gap: 1.5rem; }
+  
+  .logoArea, .footerArea {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .logoGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

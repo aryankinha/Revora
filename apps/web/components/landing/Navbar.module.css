@@ -1,0 +1,204 @@
+.navWrapper {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 999px;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  pointer-events: auto;
+  font-family: var(--font-inter), sans-serif;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: fit-content;
+  max-width: 90vw;
+}
+
+.navbarScrolled {
+  width: 800px;
+}
+
+.navMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  gap: 3rem;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #000;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo span {
+  color: #f05a28;
+}
+
+/* Inline Menu for Scrolled State */
+.inlineMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showInline {
+  opacity: 1;
+  pointer-events: auto;
+  width: auto;
+}
+
+.inlineLink {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.inlineLink:hover {
+  color: #f05a28;
+}
+
+/* Icons */
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.gridIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.gridIconWrapper:hover .gridIcon {
+  opacity: 0.7;
+}
+
+.hideGrid {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  margin-right: -0.75rem; /* Remove gap visually */
+}
+
+.gridIcon {
+  color: #5c6bc0;
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.2s ease;
+}
+
+.calendarBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f05a28;
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.calendarBtn:hover {
+  background: #f05a28;
+  transform: scale(1.05);
+}
+
+/* Dropdown Menu */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 1rem); /* below navbar */
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  width: max-content;
+  padding: 0 4rem;
+  max-width: 95vw;
+  height: 25vh; /* 20-30vh as requested */
+  min-height: 200px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  display: flex;
+  flex-direction: row; /* Horizontal */
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showDropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdownLink {
+  color: #000;
+  text-decoration: none;
+  font-family: var(--font-syne), sans-serif; /* Hero font */
+  font-weight: 800; /* bold letter as requested */
+  font-size: 2rem;
+  text-transform: capitalize;
+  letter-spacing: -0.02em;
+  transition: color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dropdownLink:hover {
+  color: #f05a28;
+  transform: scale(1.05);
+}
+
+.dropdownIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f05a28;
+}

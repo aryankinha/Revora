@@ -1,0 +1,33 @@
+.webGLApp {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.customCursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, border-width 0.2s;
+  mix-blend-mode: difference; /* Makes it visible on dark and light backgrounds */
+}
+
+.customCursor::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+}

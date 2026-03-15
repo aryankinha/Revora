@@ -1,0 +1,84 @@
+.sectionWrapper {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  /* Extra height for scrolling */
+  background: #000;
+  /* Ensures strong contrast below the hero */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.textContainer {
+  position: relative;
+  max-width: 1200px;
+  padding: 0 4rem;
+  z-index: 10;
+}
+
+.revealText {
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.2);
+  /* Base color is dim */
+}
+
+/* 
+  The text needs to be broken into spans (words or characters). 
+  We'll use standard CSS for the span elements we create in JS. 
+*/
+.word {
+  display: inline-block;
+  white-space: pre-wrap;
+  transition: opacity 0.1s;
+}
+
+.char {
+  display: inline-block;
+}
+
+/* Background Glowing Shapes */
+.glowShape1,
+.glowShape2,
+.glowShape3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.glowShape1 {
+  width: 400px;
+  height: 400px;
+  background: #f05a28;
+  right: -100px;
+  bottom: 10%;
+}
+
+.glowShape2 {
+  width: 300px;
+  height: 300px;
+  background: #d84315;
+  right: 20%;
+  bottom: -50px;
+}
+
+.glowShape3 {
+  width: 250px;
+  height: 250px;
+  background: #bf360c;
+  right: 5%;
+  top: 30%;
+}
+
+@media (max-width: 768px) {
+  .textContainer {
+    padding: 0 2rem;
+  }
+}

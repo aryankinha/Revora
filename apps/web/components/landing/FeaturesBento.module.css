@@ -1,0 +1,466 @@
+/* ═══════════════════════════════════════════════════════
+   FeaturesBento — CSS Module
+   6-card bento grid showcasing platform features
+   Dark / Orange theme
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Section ── */
+.section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+  padding: 6rem 2rem;
+}
+
+/* Background blurs */
+.glowA {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 500px;
+  height: 500px;
+  background: rgba(240, 90, 40, 0.05);
+  border-radius: 50%;
+  filter: blur(130px);
+  pointer-events: none;
+}
+.glowB {
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+  width: 1320px;
+  max-width: 92vw;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Card base ── */
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.card:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ══════════ Card 1 — Ask AI ══════════ */
+.cardAI {
+  composes: card;
+}
+
+.aiPrompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(240, 90, 40, 0.08);
+  border: 1px solid rgba(240, 90, 40, 0.18);
+  border-radius: 999px;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.aiPrompt svg {
+  color: #f05a28;
+}
+
+/* Mini dashboard mockup inside card */
+.miniDash {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 0.85rem;
+}
+
+.miniDashTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.miniDashTitle {
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.03em;
+}
+
+.miniDashBtn {
+  font-size: 0.45rem;
+  background: #f05a28;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+}
+
+.miniStats {
+  display: flex;
+  gap: 6px;
+}
+
+.miniStat {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.miniStatLabel {
+  font-size: 0.4rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 2px;
+}
+
+.miniStatVal {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ══════════ Card 2 — Stats ══════════ */
+.cardStats {
+  composes: card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ringWrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+}
+
+.ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 6px solid rgba(255, 255, 255, 0.06);
+  border-top-color: #f05a28;
+  border-right-color: #f05a28;
+  transform: rotate(45deg);
+}
+
+.statsRow {
+  display: flex;
+  gap: 2rem;
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statNum {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.statNum span {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.statName {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ══════════ Card 3 — Custom Reports ══════════ */
+.cardReports {
+  composes: card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.folderIcon {
+  width: 100px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(240, 90, 40, 0.15), rgba(240, 90, 40, 0.05));
+  border: 1px solid rgba(240, 90, 40, 0.2);
+  border-radius: 8px 8px 12px 12px;
+  position: relative;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.folderTab {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 50px;
+  height: 16px;
+  background: rgba(240, 90, 40, 0.2);
+  border-radius: 6px 6px 0 0;
+  border: 1px solid rgba(240, 90, 40, 0.25);
+  border-bottom: none;
+}
+
+.folderLabel {
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.folderBar {
+  width: 60%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+.folderBarShort {
+  width: 40%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+
+.cardLabel {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+/* ══════════ Card 4 — Integrations ══════════ */
+.cardIntegrations {
+  composes: card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.intOrbit {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.intCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.7rem;
+  font-style: italic;
+  font-weight: 600;
+  color: #f05a28;
+  text-align: center;
+  z-index: 2;
+}
+
+.intRing {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.intDot {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Position dots around the orbit */
+.intDot:nth-child(1) { top: -4px; left: 50%; transform: translateX(-50%); }
+.intDot:nth-child(2) { top: 20%; right: -2px; }
+.intDot:nth-child(3) { bottom: 20%; right: -2px; }
+.intDot:nth-child(4) { bottom: -4px; left: 50%; transform: translateX(-50%); }
+.intDot:nth-child(5) { bottom: 20%; left: -2px; }
+.intDot:nth-child(6) { top: 20%; left: -2px; }
+
+.intDotOrange {
+  composes: intDot;
+  background: rgba(240, 90, 40, 0.15);
+  border-color: rgba(240, 90, 40, 0.25);
+  color: #f05a28;
+}
+
+/* ══════════ Card 5 — Simple Strategies ══════════ */
+.cardStrategies {
+  composes: card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 4px;
+  width: 130px;
+  height: 100px;
+  margin-bottom: 1.25rem;
+}
+
+.boardCell {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  position: relative;
+}
+
+.boardCellDot {
+  composes: boardCell;
+}
+
+.boardCellDot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(240, 90, 40, 0.4);
+}
+
+.boardCellPlus {
+  composes: boardCell;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(240, 90, 40, 0.5);
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* ══════════ Card 6 — Process Optimisation ══════════ */
+.cardProcess {
+  composes: card;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.processTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.bars {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  height: 80px;
+}
+
+.processBar {
+  width: 18px;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.processBarTrack {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.processBarFill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(240, 90, 40, 0.3);
+  border: 1px solid rgba(240, 90, 40, 0.2);
+  border-radius: 0 0 5px 5px;
+  transition: height 0.5s ease;
+}
+
+.processBarDot {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ═══════════ Responsive ═══════════ */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .statsRow {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

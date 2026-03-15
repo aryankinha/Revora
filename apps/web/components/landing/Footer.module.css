@@ -1,0 +1,622 @@
+/* ═══════════════════════════════════════════════════════
+   Custom Footer — CSS Module (v1)
+   Includes Pinned "Let's Talk" CTA and bottom footer
+   Dark / Orange Theme matching Revora
+   ═══════════════════════════════════════════════════════ */
+
+.footerContainer {
+  position: relative;
+  width: 100%;
+  color: #fff;
+  background: #060606;
+}
+
+/* ═════════ 1. Pinned CTA "Let's Talk" Section ═════════ */
+.ctaSection {
+  position: relative;
+  width: 100%;
+  background: #0d0d0d; /* slightly lighter dark */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* CTA Marquee */
+.ctaMarquee {
+  background: #f05a28;
+  color: #fff;
+  padding: 12px 0;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ctaMarqueeTrack {
+  display: flex;
+  animation: marquee 20s linear infinite;
+}
+
+.ctaMarqueeItem {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0 2rem;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Main CTA Content */
+.ctaContent {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+  width: 100%;
+}
+
+.letsTalk {
+  font-family: var(--font-syne), sans-serif;
+  font-size: clamp(4rem, 12vw, 15rem);
+  font-weight: 700;
+  color: #f05a28;
+  line-height: 0.85;
+  margin-bottom: 4rem;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+.ctaBento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1px;
+}
+
+.ctaBentoLeft {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+}
+
+.ctaBentoRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.ctaCell {
+  background: #141414;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ctaCellHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.ctaCellTitle {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.socialIcons {
+  display: flex;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.socialIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.socialIcon:hover {
+  color: #f05a28;
+}
+
+.offerList {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.offerList li::before {
+  content: "•";
+  color: #f05a28;
+  display: inline-block;
+  width: 1em;
+  font-weight: bold;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.contactItemTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contactItemText {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.5;
+}
+
+.contactPhone {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+/* Contact Form */
+.formTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.4rem;
+}
+
+.formDesc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 2rem;
+}
+
+.formWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.inputGroup {
+  width: 100%;
+}
+
+.inputField, .textAreaField {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 1.2rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.9rem;
+  color: #fff;
+  transition: border-color 0.2s;
+}
+
+.inputField:focus, .textAreaField:focus {
+  outline: none;
+  border-color: rgba(240, 90, 40, 0.5);
+}
+
+.textAreaField {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.formFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.privacyText {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
+
+.privacyLink {
+  color: #f05a28;
+  text-decoration: none;
+}
+
+.submitBtn {
+  background: #f05a28;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.submitBtn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Partner Carousel */
+.partnerCarousel {
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: #0d0d0d;
+  padding: 1.5rem 0;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.partnerTrack {
+  display: flex;
+  animation: marquee 25s linear infinite;
+}
+
+.partnerItem {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* ═════════ 2. Main Bottom Footer (Scrolls over) ═════════ */
+.mainFooter {
+  position: relative;
+  z-index: 2; /* Must be above the pinned CTA */
+  background: #0a0a0a;
+  width: 100%;
+  padding-top: 5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footerContent {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.brandBanner {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem;
+  min-height: 280px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 3rem;
+}
+
+.brandBannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.7);
+  z-index: 1;
+}
+
+.brandBannerTop {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.brandEmail {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.brandLogo {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-syne), sans-serif;
+  font-size: clamp(3rem, 10vw, 10rem);
+  font-weight: 700;
+  color: #f05a28;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  display: flex;
+  align-items: flex-end;
+}
+
+.brandLogo span {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  transform: translateY(-2rem);
+  margin-left: 0.5rem;
+}
+
+.brandAddress {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+  margin-top: 2rem;
+}
+
+/* Footer Grid */
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 3rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  padding-right: 2rem;
+}
+
+.spinnerLogo {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation: spinSlow 15s linear infinite;
+}
+
+.spinnerDot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: #f05a28;
+  border-radius: 50%;
+}
+
+.spinnerSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.brandSlogan {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.3;
+}
+
+.midCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  padding-right: 2rem;
+}
+
+.navBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.navBlockTop {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.navBlockDot {
+  width: 12px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(240, 90, 40, 0.3);
+}
+
+.navBlockDot.active {
+  background: #f05a28;
+}
+
+.navLink {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  margin-bottom: 1rem;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: #fff;
+}
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.newsTitle {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
+}
+
+.newsDesc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 2rem;
+}
+
+.newsAsterisk {
+  color: #f05a28;
+}
+
+.newsForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.newsInput {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.8rem 1rem;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.newsInput:focus {
+  outline: none;
+  border-color: rgba(240, 90, 40, 0.5);
+}
+
+.newsRow {
+  display: flex;
+  gap: 8px;
+}
+
+.newsSubmit {
+  background: #f05a28;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.newsTerms {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 1.5rem;
+}
+
+.newsTermsLink {
+  color: #f05a28;
+}
+
+.newsSpam {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 1rem;
+}
+
+/* Bottom Bar */
+.bottomBar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  align-items: center;
+}
+
+.copyrightCol {
+  padding: 2rem 2rem 2rem 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.crText {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.5rem;
+}
+
+.crDesigned {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.companyInfoCol {
+  padding: 2rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.6;
+}
+
+.companyInfoCol strong {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.socialBottomCol {
+  padding: 2rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.backToTop {
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s;
+  color: #f05a28;
+}
+
+.backToTop:hover {
+  filter: brightness(1.2);
+}
+
+@media (max-width: 1024px) {
+  .ctaBento {
+    grid-template-columns: 1fr;
+  }
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .leftCol, .midCol {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-right: 0;
+    padding-bottom: 2rem;
+  }
+  .bottomBar {
+    grid-template-columns: 1fr;
+  }
+  .copyrightCol, .companyInfoCol, .socialBottomCol {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem 0;
+  }
+}
