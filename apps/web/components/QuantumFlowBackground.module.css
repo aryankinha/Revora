@@ -17,7 +17,8 @@
   z-index: 1000;
   transform: translate(-50%, -50%);
   transition: width 0.2s, height 0.2s, border-width 0.2s;
-  mix-blend-mode: difference; /* Makes it visible on dark and light backgrounds */
+  mix-blend-mode: difference;
+  /* Makes it visible on dark and light backgrounds */
 }
 
 .customCursor::before {

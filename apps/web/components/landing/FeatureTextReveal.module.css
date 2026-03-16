@@ -76,9 +76,18 @@
   right: 5%;
   top: 30%;
 }
-
+@media (max-width: 640px) {
+.sectionWrapper {
+  min-height: 65vw;}
+}
 @media (max-width: 768px) {
   .textContainer {
     padding: 0 2rem;
   }
+}
+
+@media (max-width: 640px) {
+  .textContainer { padding: 0 1rem; }
+  .revealText { font-size: clamp(1.6rem, 8vw, 3rem); text-align: left; }
+  .glowShape1, .glowShape2, .glowShape3 { display: none; }
 }

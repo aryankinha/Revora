@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "The smarter way to build, run, and scale your business.",
 };
 
-import QuantumFlowBackground from "../components/QuantumFlowBackground";
+// import QuantumFlowBackground from "../components/QuantumFlowBackground";
 import SmoothScrolling from "../components/SmoothScrolling";
 
 export default function RootLayout({

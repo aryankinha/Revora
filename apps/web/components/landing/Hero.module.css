@@ -251,3 +251,78 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 768px) {
+  .heroContainer {
+    padding: 6vh 2rem 2vh;
+  }
+
+  .topRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .mainHeadline {
+    margin: 0;
+    text-align: left;
+  }
+
+  .midRow {
+    padding: 0 2rem;
+  }
+
+  .bottomRow {
+    padding-bottom: 1.5rem;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroContainer {
+    padding: 12vh 1.25rem 2vh;
+  }
+
+  .mainHeadline {
+    font-size: clamp(1.6rem, 10vw, 3.6rem);
+    max-width: 92vw;
+    text-align: left;
+    margin-left: 2vw;
+  }
+
+  .midRow {
+    padding: 0 1.25rem;
+    gap: 1.25rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actionDesc {
+    max-width: none;
+  }
+
+  .buttonContainer {
+    margin: 1rem 1rem;
+    justify-content: flex-start;
+  }
+
+  .bottomRow {
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 0;
+    align-items: flex-start;
+  }
+
+  .featureCard {
+    display: none;
+  }
+
+  .cardImage {
+    height: 120px;
+  }
+
+  .primaryBtn {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+}

@@ -425,3 +425,13 @@
     text-align: left;
   }
 }
+
+@media (max-width: 640px) {
+  .section { padding: 4rem 1rem 3rem; }
+  .heading { font-size: clamp(1.6rem, 8vw, 2.8rem); }
+  .planRow { padding: 0.75rem; grid-template-columns: 1fr; min-height: auto; }
+  .cellImage { display: none; }
+  .cellPrice, .cellPlan, .cellFeatures, .cellCTA { border-left: none; border-top: 1px solid rgba(255,255,255,0.04); }
+  .featureList { font-size: 0.78rem; }
+  .footer { padding-top: 1.5rem; }
+}

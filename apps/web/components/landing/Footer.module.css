@@ -620,3 +620,16 @@
     padding: 1.5rem 0;
   }
 }
+
+@media (max-width: 640px) {
+  .ctaContent { padding: 2.5rem 1rem 1.5rem; }
+  .letsTalk { font-size: clamp(2rem, 10vw, 5rem); margin-bottom: 2rem; }
+  .ctaBento { grid-template-columns: 1fr; }
+  .ctaCell { padding: 1rem; }
+  .contactGrid { grid-template-columns: 1fr; }
+  .partnerItem { padding: 0 1rem; }
+  .brandLogo { font-size: clamp(1.6rem, 8vw, 4.5rem); }
+  .bottomBar { grid-template-columns: 1fr; }
+  .copyrightCol, .companyInfoCol, .socialBottomCol { padding: 1rem 0; border-bottom: none; }
+  .navBlockTop { gap: 8px; }
+}
