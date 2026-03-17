@@ -14,3 +14,4 @@ class Leads(Base):
     email = Column(String)
     company = Column(String)
     job_title = Column(String)
+    linkedin = Column(String)

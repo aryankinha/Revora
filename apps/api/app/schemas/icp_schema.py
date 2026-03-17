@@ -16,4 +16,4 @@ class ICPResponse(BaseModel):
     job_titles: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True

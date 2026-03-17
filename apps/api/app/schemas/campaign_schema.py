@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import List
 
 class CampaignCreate(BaseModel):
     campaign_name: str
@@ -17,4 +18,4 @@ class CampaignResponse(BaseModel):
     lead_limit: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
