@@ -62,7 +62,22 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkAuthStatus = () => {
+      const token = localStorage.getItem("token");
+      setIsAuthenticated(!!token);
+    };
+
+    checkAuthStatus();
+    
+    // Listen for custom auth events to instantly update without a refresh
+    window.addEventListener("auth-changed", checkAuthStatus);
+    
+    return () => window.removeEventListener("auth-changed", checkAuthStatus);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,6 +116,10 @@ export default function Navbar() {
     }
   };
 
+  const openAuthModal = () => {
+    window.dispatchEvent(new CustomEvent("open-auth-modal"));
+  };
+
   return (
     <div className={styles.navWrapper} ref={navRef}>
       <nav className={`${styles.navbar} ${isScrolled ? styles.navbarScrolled : ""}`}>
@@ -131,6 +150,17 @@ export default function Navbar() {
             >
               <GridIcon />
             </div>
+            
+            {isAuthenticated ? (
+              <a href="/dashboard" className={styles.getStartedBtn} style={{ textDecoration: 'none' }}>
+                Dashboard
+              </a>
+            ) : (
+              <button className={styles.getStartedBtn} onClick={openAuthModal}>
+                Get started
+              </button>
+            )}
+
             <button 
               className={styles.calendarBtn} 
               aria-label="Book Demo"

@@ -1,0 +1,342 @@
+.loginPage {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.169), rgba(0, 0, 0, 0.265)), url("/authimg/login_bg.jpg") center/cover no-repeat;
+  padding: 6rem 1.5rem 1rem;
+  color: #fff;
+  font-family: var(--font-inter), sans-serif;
+  position: relative;
+}
+
+.signupPage {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.384), rgba(0,0,0,0.92)), url("/authimg/signup_bg.jpg") center/cover no-repeat;
+  padding: 6rem 1.5rem 1rem;
+  color: #fff;
+  font-family: var(--font-inter), sans-serif;
+  position: relative;
+}
+
+.cardWrapper {
+  position: relative;
+  border-radius: 28px;
+  padding: 3px; /* electric border thickness */
+  display: flex;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  max-width: 580px;
+  width: 100%;
+}
+
+.cardWrapper::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    #ff3c00,
+    #ffba08,
+    #ff3c00,
+    transparent
+  );
+  animation: rotateElectric 3s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotateElectric {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  background: rgba(15, 15, 20, 0.7);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border-radius: 24px;
+  padding: 3.5rem 3rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 1;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* custom scrollbar for inner card if content is too long on small screens */
+.card::-webkit-scrollbar {
+  width: 6px;
+}
+.card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+}
+
+.logo {
+  font-family: var(--font-syne), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  background: linear-gradient(to right, #ffffff, #a0a0a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #a0a0ab;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .twoCol {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.inputWrapper:focus-within {
+  border-color: #f05a28;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.inputIcon {
+  position: absolute;
+  right: 1.25rem;
+  opacity: 0.7;
+  color: #fff;
+}
+
+.troubleLink {
+  font-size: 0.85rem;
+  color: #a0a0ab;
+  text-decoration: none;
+  margin-bottom: -0.25rem;
+  margin-top: -0.25rem;
+  transition: color 0.2s;
+}
+
+.troubleLink:hover {
+  color: #f05a28;
+}
+
+.primaryBtn {
+  border: none;
+  border-radius: 8px;
+  background: #f05a28;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.primaryBtn:hover {
+  opacity: 0.9;
+}
+
+.primaryBtn:active {
+  transform: scale(0.98);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #a0a0ab;
+  font-size: 0.85rem;
+  margin: 2rem 0 1.5rem;
+}
+
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.divider::before {
+  margin-right: 1em;
+}
+
+.divider::after {
+  margin-left: 1em;
+}
+
+.socialGrid {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.socialBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #e4e4e7;
+  padding: 0.6rem 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.socialBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.socialBtn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.helper {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  color: #a0a0ab;
+}
+
+.helperText {
+  font-size: 0.9rem;
+}
+
+.secondaryBtn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.copyright {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.roleRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.roleOption {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.45rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.roleSelected {
+  border-color: rgba(240, 90, 40, 0.7);
+  background: rgba(240, 90, 40, 0.12);
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 2rem 1.5rem;
+  }
+}

@@ -10,6 +10,7 @@ import Pricing from "../components/landing/Pricing";
 import FAQ from "../components/landing/FAQ";
 import Footer from "../components/landing/Footer";
 import LaunchModal from "../components/landing/LaunchModal";
+import AuthModal from "../components/AuthModal";
 
 export default function Home() {
   return (
@@ -28,6 +29,9 @@ export default function Home() {
       </main>
       <Footer />
       <LaunchModal />
+      <AuthModal />
     </>
   );
 }
+
+  
