@@ -1,0 +1,91 @@
+{
+  "title": "Sales Outreach Automation Platform",
+  "tables": [
+    {
+      "name": "users",
+      "columns": [
+        { "name": "id", "type": "uuid", "primary_key": true },
+        { "name": "full_name", "type": "varchar" },
+        { "name": "email", "type": "varchar" },
+        { "name": "password", "type": "varchar" },
+        { "name": "company_name", "type": "varchar" },
+        { "name": "role", "type": "varchar" },
+        { "name": "created_at", "type": "timestamp" }
+      ]
+    },
+    {
+      "name": "campaign",
+      "columns": [
+        { "name": "id", "type": "varchar", "primary_key": true },
+        { "name": "user_id", "type": "uuid", "foreign_key": true, "references": "users.id" },
+        { "name": "campaign_name", "type": "varchar" },
+        { "name": "product_name", "type": "varchar" },
+        { "name": "product_description", "type": "text" },
+        { "name": "goal", "type": "varchar" },
+        { "name": "lead_sources", "type": "json" },
+        { "name": "lead_limit", "type": "integer" },
+        { "name": "created_at", "type": "timestamp" }
+      ]
+    },
+    {
+      "name": "icp_filters",
+      "columns": [
+        { "name": "id", "type": "varchar", "primary_key": true },
+        { "name": "campaign_id", "type": "varchar", "foreign_key": true, "references": "campaign.id" },
+        { "name": "industry", "type": "varchar" },
+        { "name": "location", "type": "varchar" },
+        { "name": "company_size", "type": "varchar" },
+        { "name": "job_titles", "type": "varchar" }
+      ]
+    },
+    {
+      "name": "leads",
+      "columns": [
+        { "name": "id", "type": "varchar", "primary_key": true },
+        { "name": "campaign_id", "type": "varchar", "foreign_key": true, "references": "campaign.id" },
+        { "name": "first_name", "type": "varchar" },
+        { "name": "last_name", "type": "varchar" },
+        { "name": "email", "type": "varchar" },
+        { "name": "company", "type": "varchar" },
+        { "name": "job_title", "type": "varchar" },
+        { "name": "linkedin", "type": "varchar" },
+        { "name": "created_at", "type": "timestamp" }
+      ]
+    },
+    {
+      "name": "generated_emails",
+      "columns": [
+        { "name": "id", "type": "uuid", "primary_key": true },
+        { "name": "campaign_id", "type": "varchar", "foreign_key": true, "references": "campaign.id" },
+        { "name": "lead_id", "type": "varchar", "foreign_key": true, "references": "leads.id" },
+        { "name": "subject", "type": "varchar" },
+        { "name": "body_content", "type": "text" },
+        { "name": "status", "type": "varchar" },
+        { "name": "created_at", "type": "timestamp" },
+        { "name": "sent_at", "type": "timestamp" }
+      ]
+    },
+    {
+      "name": "scheduled_meetings",
+      "columns": [
+        { "name": "id", "type": "uuid", "primary_key": true },
+        { "name": "user_id", "type": "uuid", "foreign_key": true, "references": "users.id" },
+        { "name": "lead_id", "type": "varchar", "foreign_key": true, "references": "leads.id" },
+        { "name": "scheduled_start", "type": "timestamp" },
+        { "name": "scheduled_end", "type": "timestamp" },
+        { "name": "meeting_url", "type": "varchar" },
+        { "name": "status", "type": "varchar" },
+        { "name": "created_at", "type": "timestamp" }
+      ]
+    }
+  ],
+  "relationships": [
+    { "from": "users.id", "to": "campaign.user_id", "type": "one-to-many" },
+    { "from": "users.id", "to": "scheduled_meetings.user_id", "type": "one-to-many" },
+    { "from": "campaign.id", "to": "icp_filters.campaign_id", "type": "one-to-one" },
+    { "from": "campaign.id", "to": "leads.campaign_id", "type": "one-to-many" },
+    { "from": "campaign.id", "to": "generated_emails.campaign_id", "type": "one-to-many" },
+    { "from": "leads.id", "to": "generated_emails.lead_id", "type": "one-to-many" },
+    { "from": "leads.id", "to": "scheduled_meetings.lead_id", "type": "one-to-many" }
+  ]
+}
