@@ -1,24 +1,23 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request, HTTPException
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
+import requests
+import json
+import urllib.parse
+import time
+import uuid
+
 from app.schemas.auth_schema import SignupSchema, LoginSchema
 from pydantic import BaseModel
 from app.db.database import SessionLocal
 from app.models.user import User
 from app.core.dependencies import get_current_user
 from app.services.auth_service import signup_user, login_user
-import os
-import requests
-from fastapi import Request, HTTPException
-from fastapi.responses import RedirectResponse
-from google_auth_oauthlib.flow import Flow
+from app.core.config import settings
 from app.core.security import create_access_token
-from app.models.user import User
+from app.core.hashing import hash_password
+from app.utils.seed_utils import seed_welcome_data
 
-GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
-GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-GOOGLE_SSO_REDIRECT_URI = os.getenv(
-    "GOOGLE_SSO_REDIRECT_URI", "http://localhost:8000/auth/google/callback"
-)
 router = APIRouter()
 
 
@@ -42,15 +41,13 @@ def login(data: LoginSchema, db: Session = Depends(get_db)):
 
 @router.get("/google/login")
 def google_sso_login():
-    if not GOOGLE_CLIENT_ID or not GOOGLE_CLIENT_SECRET:
+    if not settings.GOOGLE_CLIENT_ID or not settings.GOOGLE_CLIENT_SECRET:
         raise HTTPException(status_code=500, detail="Google Client credentials missing")
-
-    import urllib.parse
 
     auth_url = (
         "https://accounts.google.com/o/oauth2/v2/auth?"
-        f"client_id={GOOGLE_CLIENT_ID}&"
-        f"redirect_uri={urllib.parse.quote(GOOGLE_SSO_REDIRECT_URI)}&"
+        f"client_id={settings.GOOGLE_CLIENT_ID}&"
+        f"redirect_uri={urllib.parse.quote(settings.GOOGLE_SSO_REDIRECT_URI)}&"
         "response_type=code&"
         "scope=openid%20profile%20email%20https://www.googleapis.com/auth/gmail.send&"
         "access_type=offline&"
@@ -64,9 +61,9 @@ def google_sso_callback(request: Request, code: str, db: Session = Depends(get_d
     try:
         token_data = {
             "code": code,
-            "client_id": GOOGLE_CLIENT_ID,
-            "client_secret": GOOGLE_CLIENT_SECRET,
-            "redirect_uri": GOOGLE_SSO_REDIRECT_URI,
+            "client_id": settings.GOOGLE_CLIENT_ID,
+            "client_secret": settings.GOOGLE_CLIENT_SECRET,
+            "redirect_uri": settings.GOOGLE_SSO_REDIRECT_URI,
             "grant_type": "authorization_code",
         }
         res = requests.post("https://oauth2.googleapis.com/token", data=token_data)
@@ -93,23 +90,17 @@ def google_sso_callback(request: Request, code: str, db: Session = Depends(get_d
         user = db.query(User).filter(User.email == email).first()
 
         if not user:
-            from app.core.hashing import hash_password
-            import uuid
-
             random_pwd = hash_password(str(uuid.uuid4()))
             user = User(
                 full_name=name,
                 email=email,
                 password=random_pwd,
                 role="founder",
-                company_name=None,  # Explicitly None so we can prompt them later
+                company_name=None,
             )
             db.add(user)
             db.commit()
             db.refresh(user)
-
-            # Seed welcome data for the new user (only if whitelisted)
-            from app.utils.seed_utils import seed_welcome_data
 
             seed_welcome_data(db, str(user.id), user.email)
 
@@ -117,16 +108,12 @@ def google_sso_callback(request: Request, code: str, db: Session = Depends(get_d
         user.google_access_token = access_token_google
         if "refresh_token" in token_json:
             user.google_refresh_token = token_json["refresh_token"]
-        import time
 
         user.token_expiry = str(int(time.time()) + token_json.get("expires_in", 3599))
         user.connected_email = email
         db.commit()
 
         access_token = create_access_token({"user_id": str(user.id)})
-
-        import json
-        import urllib.parse
 
         user_data = {
             "id": str(user.id),
@@ -138,12 +125,12 @@ def google_sso_callback(request: Request, code: str, db: Session = Depends(get_d
         user_data_str = urllib.parse.quote(json.dumps(user_data))
 
         return RedirectResponse(
-            f"http://localhost:3000/dashboard?token={access_token}&user={user_data_str}"
+            f"{settings.FRONTEND_URL}/dashboard?token={access_token}&user={user_data_str}"
         )
 
     except Exception as e:
         print(f"SSO Error: {e}")
-        return RedirectResponse("http://localhost:3000/auth/login?error=Google_SSO_Failed")
+        return RedirectResponse(f"{settings.FRONTEND_URL}/auth/login?error=Google_SSO_Failed")
 
 
 class OnboardingUpdate(BaseModel):

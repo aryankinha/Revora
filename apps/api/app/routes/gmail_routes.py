@@ -1,12 +1,11 @@
-import os
+import base64
+from email.message import EmailMessage
 from fastapi import APIRouter, Depends, Request, HTTPException
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import Flow
 from googleapiclient.discovery import build
-import base64
-from email.message import EmailMessage
 from pydantic import BaseModel
 
 from app.db.database import SessionLocal
@@ -15,14 +14,12 @@ from app.models.leads import Leads
 from app.models.campaign import Campaign
 from app.models.icp_filter import ICP
 from app.services.email_generator import EmailGenerator
+from app.core.config import settings
+from app.core.dependencies import get_current_user
 
 router = APIRouter(prefix="/gmail", tags=["Gmail Integration"])
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.send"]
-
-GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
-GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-GOOGLE_REDIRECT_URI = os.getenv("GOOGLE_REDIRECT_URI", "http://localhost:8000/gmail/callback")
 
 
 def get_db():
@@ -33,29 +30,28 @@ def get_db():
         db.close()
 
 
-from app.core.dependencies import get_current_user
-
-
 @router.get("/auth")
 def gmail_auth():
-    if not GOOGLE_CLIENT_ID or not GOOGLE_CLIENT_SECRET:
+    if not settings.GOOGLE_CLIENT_ID or not settings.GOOGLE_CLIENT_SECRET:
         raise HTTPException(
             status_code=500, detail="Google Client credentials not configured in .env"
         )
 
     client_config = {
         "web": {
-            "client_id": GOOGLE_CLIENT_ID,
+            "client_id": settings.GOOGLE_CLIENT_ID,
             "project_id": "revora-demo",
             "auth_uri": "https://accounts.google.com/o/oauth2/auth",
             "token_uri": "https://oauth2.googleapis.com/token",
             "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-            "client_secret": GOOGLE_CLIENT_SECRET,
-            "redirect_uris": [GOOGLE_REDIRECT_URI],
+            "client_secret": settings.GOOGLE_CLIENT_SECRET,
+            "redirect_uris": [settings.GOOGLE_REDIRECT_URI],
         }
     }
 
-    flow = Flow.from_client_config(client_config, scopes=SCOPES, redirect_uri=GOOGLE_REDIRECT_URI)
+    flow = Flow.from_client_config(
+        client_config, scopes=SCOPES, redirect_uri=settings.GOOGLE_REDIRECT_URI
+    )
 
     auth_url, _ = flow.authorization_url(prompt="consent", access_type="offline")
     return RedirectResponse(auth_url)
@@ -70,17 +66,19 @@ def gmail_callback(
 ):
     client_config = {
         "web": {
-            "client_id": GOOGLE_CLIENT_ID,
+            "client_id": settings.GOOGLE_CLIENT_ID,
             "project_id": "revora-demo",
             "auth_uri": "https://accounts.google.com/o/oauth2/auth",
             "token_uri": "https://oauth2.googleapis.com/token",
             "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-            "client_secret": GOOGLE_CLIENT_SECRET,
-            "redirect_uris": [GOOGLE_REDIRECT_URI],
+            "client_secret": settings.GOOGLE_CLIENT_SECRET,
+            "redirect_uris": [settings.GOOGLE_REDIRECT_URI],
         }
     }
 
-    flow = Flow.from_client_config(client_config, scopes=SCOPES, redirect_uri=GOOGLE_REDIRECT_URI)
+    flow = Flow.from_client_config(
+        client_config, scopes=SCOPES, redirect_uri=settings.GOOGLE_REDIRECT_URI
+    )
 
     try:
         flow.fetch_token(code=code)
@@ -94,8 +92,7 @@ def gmail_callback(
         )
 
         db.commit()
-        # In a real app we redirect back to the frontend settings page
-        return RedirectResponse("http://localhost:3000/dashboard/leads?gmail_connected=true")
+        return RedirectResponse(f"{settings.FRONTEND_URL}/dashboard/leads?gmail_connected=true")
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"OAuth Flow Failed: {e}")
 
@@ -148,8 +145,8 @@ def _get_gmail_service(current_user: User):
         token=current_user.google_access_token,
         refresh_token=current_user.google_refresh_token,
         token_uri="https://oauth2.googleapis.com/token",
-        client_id=GOOGLE_CLIENT_ID,
-        client_secret=GOOGLE_CLIENT_SECRET,
+        client_id=settings.GOOGLE_CLIENT_ID,
+        client_secret=settings.GOOGLE_CLIENT_SECRET,
         scopes=SCOPES,
     )
     return build("gmail", "v1", credentials=credentials)
