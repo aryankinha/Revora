@@ -1,8 +1,8 @@
-# Testing & Quality Assurance Setup - Complete Summary
+# Testing and Quality Assurance Setup Summary
 
-## ✅ What Has Been Set Up
+## Overview of Setup
 
-### 1. 📁 Test Directories Created
+### 1. Test Directories Created
 
 #### Backend Tests
 
@@ -19,7 +19,7 @@
   - `utils.test.ts` - Utility functions tests
   - `components.test.ts` - Component tests
 
-### 2. 🧪 Test Configurations
+### 2. Test Configurations
 
 #### Backend
 
@@ -37,7 +37,7 @@
   - Path aliases support
   - Coverage thresholds (50% minimum)
 
-### 3. 🔧 Linting & Formatting
+### 3. Linting and Formatting
 
 #### Configuration Files
 
@@ -53,7 +53,7 @@
   - Python code (black, flake8)
   - JSON/Markdown formatting
 
-### 4. 🔗 Git Hooks with Husky
+### 4. Git Hooks with Husky
 
 #### Hooks Created
 
@@ -68,7 +68,7 @@
 
 - `.husky/commit-msg` - Validates commit messages
 
-### 5. 🚀 GitHub Actions Workflows
+### 5. GitHub Actions Workflows
 
 #### `.github/workflows/test.yml` - Main CI Pipeline
 
@@ -112,7 +112,7 @@ Runs on push and PR:
 - Comments coverage on PRs
 - Archives reports
 
-### 6. 📦 Package Dependencies Added
+### 6. Package Dependencies Added
 
 #### Root package.json
 
@@ -136,7 +136,7 @@ Added test scripts and dependencies:
 - React Testing Library
 - @types/jest for TypeScript support
 
-### 7. 📝 Documentation Created
+### 7. Documentation Created
 
 #### `TESTING.md` - Comprehensive Testing Guide
 
@@ -171,7 +171,7 @@ Added test scripts and dependencies:
 - Troubleshooting table
 - Common scenarios
 
-### 8. 🛠️ Utility Scripts
+### 8. Utility Scripts
 
 #### Shell Scripts (macOS/Linux)
 
@@ -184,16 +184,16 @@ Added test scripts and dependencies:
 - `scripts/pre-push-validation.bat` - Pre-push validation
 - `scripts/run-all-tests.bat` - Run all tests with coverage
 
-### 9. 📊 Configuration Updates
+### 9. Configuration Updates
 
 #### Root package.json - New Scripts
 
 ```bash
-npm run test                 # Run all tests
-npm run test:frontend        # Frontend tests only
-npm run test:backend         # Backend tests only
-npm run test:watch           # Watch mode
-npm run test:coverage        # Coverage reports
+bun run test                 # Run all tests
+bun run test:frontend        # Frontend tests only
+bun run test:backend         # Backend tests only
+bun run test:watch           # Watch mode
+bun run test:coverage        # Coverage reports
 ```
 
 #### turbo.json - New Tasks
@@ -202,7 +202,7 @@ npm run test:coverage        # Coverage reports
 - `test:watch` task for development
 - `test:coverage` task for reports
 
-### 10. 🔒 Security & Ignore Files
+### 10. Security and Ignore Files
 
 #### `.gitignore` - Updated
 
@@ -216,16 +216,13 @@ Added entries for:
 
 Ignores unnecessary files from formatting
 
-## 📋 File Structure Summary
+## File Structure Summary
 
 ```
 Revora/
 ├── .github/
 │   └── workflows/
-│       ├── test.yml              # Main CI pipeline
-│       ├── pr-validation.yml     # PR specific checks
-│       ├── scheduled-tests.yml   # Nightly tests
-│       └── coverage.yml          # Coverage reports
+│       ├── pipeline.yml              # Main CI pipeline
 │
 ├── .husky/
 │   ├── pre-commit               # Pre-commit hook
@@ -267,7 +264,7 @@ Revora/
 └── SETUP_SUMMARY.md              # This file
 ```
 
-## 🎯 How to Use This Setup
+## Usage Instructions
 
 ### First Time Users
 
@@ -278,9 +275,9 @@ Revora/
 ### Running Tests
 
 ```bash
-npm run test              # All tests
-npm run test:coverage    # With coverage reports
-npm run test:watch       # In watch mode
+bun run test              # All tests
+bun run test:coverage    # With coverage reports
+bun run test:watch       # In watch mode
 ```
 
 ### Pre-commit Checks
@@ -301,46 +298,46 @@ npm run test:watch       # In watch mode
   - Daily at 2 AM UTC (scheduled)
 - Results visible in GitHub Actions tab
 
-## 🔍 Quality Gates
+## Quality Gates
 
 ### Before Commit (Automatic)
 
-✅ ESLint passes
-✅ Prettier formatting OK
-✅ Python formatting (black)
-✅ Python linting (flake8)
+- ESLint passes
+- Prettier formatting OK
+- Python formatting (black)
+- Python linting (flake8)
 
 ### Before Push (Optional)
 
-✅ All tests pass
-✅ Coverage thresholds met
+- All tests pass
+- Coverage thresholds met
 
 ### CI/CD (GitHub)
 
-✅ All linters pass
-✅ All tests pass (multiple versions)
-✅ Coverage reports generated
-✅ Type checking passes
+- All linters pass
+- All tests pass (multiple versions)
+- Coverage reports generated
+- Type checking passes
 
-## 📈 Next Steps
+## Next Steps
 
-1. **Install dependencies**: `npm install && npx husky install`
+1. **Install dependencies**: `bun install && bun x husky install`
 2. **Setup backends**: Follow Python venv setup in DEVELOPER_SETUP.md
-3. **Run tests**: `npm run test` to verify setup
-4. **Start developing**: `npm run dev`
+3. **Run tests**: `bun run test` to verify setup
+4. **Start developing**: `bun run dev`
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Hooks not running?
 
 ```bash
-npx husky install
+bun x husky install
 ```
 
 ### Tests not found?
 
 ```bash
-npm install  # Ensure dependencies are installed
+bun install  # Ensure dependencies are installed
 ```
 
 ### Need to update tests?
@@ -350,7 +347,7 @@ npm install  # Ensure dependencies are installed
 
 See [TESTING.md](TESTING.md) for details on writing tests.
 
-## 📞 Support
+## Support
 
 For detailed information:
 
@@ -360,6 +357,6 @@ For detailed information:
 
 ---
 
-**Setup Completed** ✅
+**Setup Completed**
 
-All testing infrastructure is now ready. Start by reading QUICK_REFERENCE.md for common commands!
+All testing infrastructure is now ready. Start by reading QUICK_REFERENCE.md for common commands.

@@ -2,7 +2,7 @@
 
 This document outlines the comprehensive testing, linting, and formatting setup for the Revora project.
 
-## 📋 Overview
+## Overview
 
 The project includes:
 
@@ -12,13 +12,13 @@ The project includes:
 - **Pre-commit Hooks**: Husky with automatic checks
 - **CI/CD**: GitHub Actions workflows
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Install Dependencies
 
 ```bash
 # Install all dependencies (from root)
-npm install
+bun install
 
 # For backend development
 cd apps/api
@@ -30,32 +30,32 @@ pip install pytest pytest-asyncio pytest-cov pytest-mock black flake8 pylint
 
 ```bash
 # Run all tests
-npm run test
+bun run test
 
 # Run frontend tests only
-npm run test:frontend
+bun run test:frontend
 
 # Run backend tests only
-npm run test:backend
+bun run test:backend
 
 # Watch mode (frontend)
-npm run test:watch
+bun run test:watch
 
 # Coverage report
-npm run test:coverage
+bun run test:coverage
 ```
 
 ### Run Linting & Formatting
 
 ```bash
 # Lint all code
-npm run lint
+bun run lint
 
 # Format all code
-npm run format
+bun run format
 
 # Check formatting without changes
-npx prettier --check "**/*.{ts,tsx,js,json,md}"
+bun x prettier --check "**/*.{ts,tsx,js,json,md}"
 
 # Format Python files
 cd apps/api
@@ -180,16 +180,16 @@ async def test_concurrent_operations():
 
 ```bash
 # Run all tests
-npm run test:frontend
+bun run test:frontend
 
 # Run in watch mode
-npm run test:watch
+bun run test:watch
 
 # Generate coverage report
-npm run test:coverage
+bun run test:coverage
 
 # Run specific test
-npx jest tests/utils.test.ts
+bun x jest tests/utils.test.ts
 ```
 
 ### Test Structure
@@ -219,16 +219,16 @@ describe('Component Tests', () => {
 
 ```bash
 # Check lint errors
-npm run lint
+bun run lint
 
 # Fix ESLint issues
-npx eslint --fix apps/web/
+bun x eslint --fix apps/web/
 
 # Check formatting
-npx prettier --check apps/web/
+bun x prettier --check apps/web/
 
 # Format code
-npx prettier --write apps/web/
+bun x prettier --write apps/web/
 ```
 
 ### Backend Linting
@@ -313,7 +313,7 @@ cd apps/api && open htmlcov/index.html
 
 ```bash
 # Reinstall Husky
-npx husky install
+bun x husky install
 ```
 
 ### Tests Not Found
@@ -323,7 +323,7 @@ npx husky install
 pip install pytest pytest-asyncio pytest-cov
 
 # Ensure Jest is installed
-npm install jest ts-jest @testing-library/react
+bun install jest ts-jest @testing-library/react
 ```
 
 ### Module Not Found Errors (Backend)
@@ -337,10 +337,10 @@ export PYTHONPATH="${PYTHONPATH}:$(pwd)/apps/api"
 
 ```bash
 # Format entire project
-npm run format
+bun run format
 
 # Format specific app
-npx prettier --write apps/web/
+bun x prettier --write apps/web/
 ```
 
 ## 📝 Adding New Tests
@@ -398,10 +398,10 @@ Closes #123
 
 Before pushing, ensure:
 
-- ✅ Tests pass locally: `npm run test`
-- ✅ Linting passes: `npm run lint`
-- ✅ Formatting correct: `npm run format`
-- ✅ Types check out: `npm run check-types`
+- All tests pass locally: `bun run test`
+- Linting passes: `bun run lint`
+- Formatting correct: `bun run format`
+- Types check out: `bun run check-types`
 
 ## 📚 Resources
 

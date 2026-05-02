@@ -1,14 +1,14 @@
-# 🚀 Quick Command Reference
+# Quick Command Reference
 
 ## Getting Started
 
 ```bash
 # First time setup
-npm install
-npx husky install
+bun install
+bun x husky install
 
 # Start development
-npm run dev
+bun run dev
 
 # Setup backend
 cd apps/api && python -m venv venv
@@ -20,28 +20,28 @@ pip install -r ../requirements.txt
 
 | Command          | Purpose               |
 | ---------------- | --------------------- |
-| `npm run dev`    | Start all dev servers |
-| `npm run build`  | Build all apps        |
-| `npm run test`   | Run all tests         |
-| `npm run lint`   | Check code style      |
-| `npm run format` | Format code           |
+| `bun run dev`    | Start all dev servers |
+| `bun run build`  | Build all apps        |
+| `bun run test`   | Run all tests         |
+| `bun run lint`   | Check code style      |
+| `bun run format` | Format code           |
 
 ## Testing
 
 | Command                 | Purpose           |
 | ----------------------- | ----------------- |
-| `npm run test:frontend` | Jest tests only   |
-| `npm run test:backend`  | Pytest tests only |
-| `npm run test:watch`    | Watch mode        |
-| `npm run test:coverage` | Coverage report   |
+| `bun run test:frontend` | Jest tests only   |
+| `bun run test:backend`  | Pytest tests only |
+| `bun run test:watch`    | Watch mode        |
+| `bun run test:coverage` | Coverage report   |
 
 ## Code Quality
 
 | Command               | Purpose          |
 | --------------------- | ---------------- |
-| `npm run lint`        | Run all linters  |
-| `npm run format`      | Auto-format code |
-| `npm run check-types` | TypeScript check |
+| `bun run lint`        | Run all linters  |
+| `bun run format`      | Auto-format code |
+| `bun run check-types` | TypeScript check |
 
 ## Backend (Python)
 
@@ -67,16 +67,16 @@ flake8 app/
 cd apps/web
 
 # Run tests
-npm test
+bun test
 
 # Run type check
-npx tsc --noEmit
+bun x tsc --noEmit
 
 # Lint
-npx eslint .
+bun x eslint .
 
 # Format
-npx prettier --write .
+bun x prettier --write .
 ```
 
 ## Git Workflow
@@ -104,7 +104,7 @@ git push origin feat/my-feature
 
 ```bash
 # Frontend: Open browser DevTools
-npm run dev
+bun run dev
 # Press F12 in browser
 
 # Backend: Add breakpoints and debug
@@ -132,9 +132,9 @@ scripts\pre-push-validation.bat   # Windows
 | -------------------------- | ------------------------------------------- |
 | Port in use                | `lsof -i :3000` then `kill -9 <PID>`        |
 | Python venv not activating | `pip install --upgrade pip`                 |
-| Modules not found          | Delete `node_modules` and run `npm install` |
-| Husky hooks not running    | `npx husky install`                         |
-| Tests failing              | `npm run test` to see details               |
+| Modules not found          | Delete `node_modules` and run `bun install` |
+| Husky hooks not running    | `bun x husky install`                       |
+| Tests failing              | `bun run test` to see details               |
 
 ## Environment Setup
 
@@ -166,30 +166,30 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 
 ```bash
 git checkout -b feat/feature-name
-npm run dev
-npm run test:watch
+bun run dev
+bun run test:watch
 ```
 
 ### Before pushing code
 
 ```bash
-npm run lint      # Check style
-npm run format    # Auto-fix style
-npm run test      # Run all tests
-npm run check-types  # Type check
+bun run lint      # Check style
+bun run format    # Auto-fix style
+bun run test      # Run all tests
+bun run check-types  # Type check
 git push
 ```
 
 ### Running only changed tests
 
 ```bash
-npm run test -- --onlyChanged
+bun run test -- --onlyChanged
 ```
 
 ### Checking test coverage
 
 ```bash
-npm run test:coverage
+bun run test:coverage
 # View HTML reports:
 # - Frontend: apps/web/coverage/lcov-report/index.html
 # - Backend: apps/api/htmlcov/index.html

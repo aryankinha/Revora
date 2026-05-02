@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - **Node.js**: 18.x or higher (use nvm for version management)
-- **npm**: Comes with Node.js
+- **Bun**: 1.0 or higher (preferred package manager)
 - **Python**: 3.9+ (for backend development)
 - **Git**: For version control
 
@@ -17,10 +17,10 @@ git clone <repository-url>
 cd Revora
 
 # Install all dependencies
-npm install
+bun install
 
 # Setup Husky hooks
-npx husky install
+bun x husky install
 ```
 
 ### 2. Backend Setup
@@ -49,10 +49,10 @@ pip install pytest pytest-asyncio pytest-cov pytest-mock black flake8 pylint
 
 ```bash
 # From root directory
-npm install
+bun install
 
 # Install Jest and testing libraries (should be in package.json)
-npm install --save-dev jest ts-jest @testing-library/react @testing-library/jest-dom
+bun add --dev jest ts-jest @testing-library/react @testing-library/jest-dom
 ```
 
 ## Running Development Servers
@@ -60,7 +60,7 @@ npm install --save-dev jest ts-jest @testing-library/react @testing-library/jest
 ### Frontend
 
 ```bash
-npm run dev
+bun run dev
 # Runs Next.js on http://localhost:3000
 ```
 
@@ -78,45 +78,45 @@ uvicorn app.main:app --reload
 
 ```bash
 # Start development servers (all apps)
-npm run dev
+bun run dev
 
 # Build all apps
-npm run build
+bun run build
 
 # Run type checking
-npm run check-types
+bun run check-types
 ```
 
 ### Testing
 
 ```bash
 # Run all tests
-npm run test
+bun run test
 
 # Run frontend tests
-npm run test:frontend
+bun run test:frontend
 
 # Run backend tests
-npm run test:backend
+bun run test:backend
 
 # Run tests in watch mode
-npm run test:watch
+bun run test:watch
 
 # Generate coverage reports
-npm run test:coverage
+bun run test:coverage
 ```
 
 ### Code Quality
 
 ```bash
 # Run linters
-npm run lint
+bun run lint
 
 # Format code
-npm run format
+bun run format
 
 # Check if formatting is needed
-npx prettier --check "**/*.{ts,tsx,js,json,md}"
+bun x prettier --check "**/*.{ts,tsx,js,json,md}"
 ```
 
 ## Git Workflow
@@ -210,7 +210,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 
 ```bash
 # Run with debugging
-npm run dev
+bun run dev
 
 # Use Chrome DevTools (F12)
 # Check console, network, and React component tree
@@ -253,15 +253,15 @@ pip install -r ../requirements.txt
 
 ```bash
 # Clear cache and reinstall
-rm -rf node_modules package-lock.json
-npm install
+rm -rf node_modules bun.lock
+bun install
 ```
 
 ### Husky Hooks Not Running
 
 ```bash
 # Reinstall Husky
-npx husky install
+bun x husky install
 
 # Make hooks executable
 chmod +x .husky/pre-commit
@@ -277,7 +277,7 @@ chmod +x .husky/pre-push
 
 ## Performance Tips
 
-1. **Use npm workspaces** for faster installs
+1. **Use bun workspaces** for faster installs
 2. **Enable Turbo caching** for faster builds
 3. **Use Code splitting** in React components
 4. **Optimize database queries** with indexes
@@ -302,10 +302,10 @@ chmod +x .husky/pre-push
 
 Before submitting a PR:
 
-- [ ] Tests pass: `npm run test`
-- [ ] Linting passes: `npm run lint`
-- [ ] Code formatted: `npm run format`
-- [ ] Types check: `npm run check-types`
+- [ ] Tests pass: `bun run test`
+- [ ] Linting passes: `bun run lint`
+- [ ] Code formatted: `bun run format`
+- [ ] Types check: `bun run check-types`
 - [ ] No console errors/warnings
 - [ ] Updated relevant documentation
 - [ ] Changes tested locally
@@ -313,4 +313,4 @@ Before submitting a PR:
 
 ---
 
-Happy coding! 🚀
+Professional setup complete.

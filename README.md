@@ -1,92 +1,138 @@
-# Revora API - Lead Generation & Outreach Backend
+# Revora - Enterprise Lead Generation and Outreach Platform
 
-This is the backend API for Revora, built with **FastAPI**. It has been architecturally designed to serve not only as a functional application but also to demonstrate proper **System Design**, **Object-Oriented Programming (OOP)**, and **SOLID Principles**.
+Revora is a comprehensive platform designed for automated lead generation, Ideal Customer Profile (ICP) analysis, and secure email outreach. The project is architected as a high-performance monorepo, demonstrating enterprise-grade system design, object-oriented programming principles, and scalable architecture.
 
-### Key Features Added
+## Platform Features
 
-- **Automated Lead Generation**: Integrates with external providers (Apollo, LinkedIn) via pattern-driven interfaces to generate robust leads based on an Ideal Customer Profile (ICP).
-- **Gmail Outreach Integration**: Connects securely to the Google Gmail API (via OAuth2) allowing users to execute personalized cold-email campaigns straight from the portal.
-- **JWT Authentication**: Protects user-scoped endpoints, keeping campaigns and leads properly segmented.
+- **Automated Lead Generation**: Integration with external providers such as Apollo and LinkedIn via strategy-driven interfaces to generate robust leads based on specific ICP parameters.
 
----
+* **Gmail Outreach Integration**: Secure connection to the Google Gmail API via OAuth2, enabling personalized cold-email campaigns directly from the platform.
+* **Dynamic Dashboard**: Interactive data visualization and campaign management interface.
+* **JWT Authentication**: Secure, user-scoped access control ensuring data segmentation and privacy.
+* **System Design Excellence**: Implementation of core design patterns and SOLID principles for maintainability and scalability.
 
-## System Architecture & Design Patterns
+## Technology Stack
 
-We have thoughtfully applied standard enterprise design patterns to structure our features modularly and expansively. Here are the core patterns implemented in this codebase:
+### Frontend
 
-### 1. **Singleton Pattern**
+- **Framework**: Next.js 15 with React 19
+- **Styling**: Tailwind CSS
+- **Animations**: GSAP (GreenSock Animation Platform)
+- **Smooth Scrolling**: Lenis
+- **Visualization**: Recharts and Three.js
+- **Package Manager**: Bun
 
-- **Where**: `app/db/database.py`
-- **Why**: Database connections are expensive. The `DatabaseManager` strictly enforces the creation of only exactly one database connection engine (`sqlalchemy.create_engine`) across the entire lifecycle of the application. It guarantees resource efficiency.
+### Backend
 
-### 2. **Strategy Pattern**
+- **Framework**: FastAPI (Python 3.11+)
+- **ORM**: SQLAlchemy
+- **Database**: PostgreSQL
+- **Migrations**: Alembic
+- **Validation**: Pydantic
 
-- **Where**: `app/services/lead_generation_strategy.py`
-- **Why**: Allows the application to seamlessly switch between different lead sources (Apollo, LinkedIn, Hunter). The codebase interacts only with the abstract `LeadGenerationStrategy.generate_leads()` method, meaning the application doesn't care _how_ a lead is fetched, only that it is returned in a standard format.
+### Infrastructure & Tooling
 
-### 3. **Factory Pattern**
+- **Monorepo Management**: Turborepo
+- **Testing**: Jest (Frontend), Pytest (Backend)
+- **Code Quality**: Husky, Lint-staged, ESLint, Prettier, Flake8, Black
 
-- **Where**: `app/services/lead_factory.py`
-- **Why**: Used by the routing layer to dynamically create the correct strategy without tightly coupling the API endpoints to an exact class. By providing a string like `"Apollo"`, the Factory safely resolves it into an active `ApolloLeadStrategy` object.
+## System Architecture and Design Patterns
 
-### 4. **Adapter Pattern**
+The platform implements standard enterprise design patterns to ensure a modular and extensible codebase.
 
-- **Where**: `app/services/apollo_adapter.py`
-- **Why**: External APIs change without warning and often return overly complex/deep JSON data structures. The Adapter pattern translates Apollo's incompatible or weird data types into our standard, internal Application DTO format (`Lead`). This shields our models from third-party vendor changes.
+### 1. Singleton Pattern
 
----
+- **Implementation**: `app/db/database.py`
+- **Rationale**: Manages database connection engines strictly, ensuring a single connection engine is utilized across the application lifecycle to optimize resource consumption.
 
-## SOLID Principles Implemented
+### 2. Strategy Pattern
 
-- **S - Single Responsibility Principle**: Responsibilities are strictly segregated. For example, `ApolloLeadStrategy` _strictly handles HTTP fetching_, while `ApolloAdapter` _strictly handles JSON normalization_. The routing methods no longer do either.
-- **O - Open/Closed Principle**: By using the Strategy Pattern, we can integrate new data sources (e.g., Lusha, ZoomInfo) by simply creating a new class that extends `LeadGenerationStrategy`. We **never have to modify** the existing lead generation execution code again.
-- **L - Liskov Substitution Principle**: All route consumers expect an object from the Factory to be a `LeadGenerationStrategy`. Whether it's Apollo or LinkedIn, they can be directly substituted for each other securely.
-- **I - Interface Segregation Principle**: Python Abstract Base Classes (`ABC`) enforce very specific logic constraints rather than bloated catch-all handlers.
-- **D - Dependency Inversion Principle**: The FastAPI routes depend on the _abstract_ interface/factory logic, not on the low-level implementation details of how an Apollo API call works.
+- **Implementation**: `app/services/lead_generation_strategy.py`
+- **Rationale**: Enables seamless switching between different lead sources (Apollo, LinkedIn, etc.). The application interacts with an abstract interface, decoupling the execution logic from specific provider implementations.
 
----
+### 3. Factory Pattern
 
-## Quick Start Commands
+- **Implementation**: `app/services/lead_factory.py`
+- **Rationale**: Dynamically instantiates the appropriate lead generation strategy based on runtime requirements, reducing tight coupling between API endpoints and strategy classes.
 
-To make interactions simple, we have provided the exact bash commands to run your application.
+### 4. Adapter Pattern
 
-You can run these commands from the `apps/api/` folder:
+- **Implementation**: `app/services/apollo_adapter.py`
+- **Rationale**: Standardizes external API responses into internal Data Transfer Objects (DTOs), shielding the application core from third-party schema changes.
 
-| Action                                                        | Command                                                         |
-| ------------------------------------------------------------- | --------------------------------------------------------------- |
-| Starts the local FastAPI server in watch/reload mode.         | `cd app && uvicorn main:app --reload --port 8000`               |
-| Installs needed dependencies via pip.                         | `cd app && pip install -r requirements.txt`                     |
-| Triggers alembic to push awaiting changes to the DB.          | `cd app && alembic upgrade head`                                |
-| Triggers alembic to auto-generate a new migration script.     | `cd app && alembic revision --autogenerate -m "Auto migration"` |
-| Wipes out any `__pycache__` artifacts cluttering the project. | `find . -type d -name "__pycache__" -exec rm -rf {} +`          |
+## SOLID Principles
 
-_Example output for starting the server:_
+- **Single Responsibility Principle**: Responsibilities are strictly segregated (e.g., separating HTTP fetching from JSON normalization).
+- **Open/Closed Principle**: New data sources can be integrated by extending existing strategies without modifying core execution logic.
+- **Liskov Substitution Principle**: Lead generation strategies are interchangeable via their shared abstract interface.
+- **Interface Segregation Principle**: Abstract Base Classes enforce specific logic constraints rather than utilizing monolithic handlers.
+- **Dependency Inversion Principle**: Higher-level route logic depends on abstractions rather than low-level implementation details.
+
+## Getting Started
+
+### Prerequisites
+
+- Bun 1.0 or higher
+- Python 3.11 or higher
+- PostgreSQL
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   cd Revora
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   bun install
+   bun x husky install
+   ```
+
+3. Setup backend environment:
+   ```bash
+   cd apps/api
+   python -m venv venv
+   source venv/bin/activate  # macOS/Linux
+   pip install -r ../requirements.txt
+   ```
+
+### Running the Platform
+
+To start all applications (Frontend, Backend, Docs) in development mode:
 
 ```bash
-$ cd app && uvicorn main:app --reload --port 8000
-INFO:     Uvicorn running on http://127.0.0.1:8000
+bun run dev
 ```
 
----
-
-## Project Directory Structure
+## Project Structure
 
 ```text
 Revora/
 ├── apps/
 │   ├── api/                # FastAPI Backend
-│   │   └── app/
-│   │       ├── db/         # Singleton implementations for DB
-│   │       ├── models/     # SQLAlchemy ORM Models
-│   │       ├── routes/     # FastAPI Route configurations (Campaigns, Leads, Gmail, Auth)
-│   │       └── services/   # Design Patterns (Factory, Strategy, Adapter)
-│   ├── docs/               # Next.js Docs application
-│   └── web/                # Next.js Web application
-├── docs/                   # Architecture & Documentation (ERDs, Schemas)
-├── packages/               # Shared Turborepo packages
+│   ├── docs/               # Documentation Application (Next.js)
+│   └── web/                # Main Web Application (Next.js)
+├── packages/               # Shared Monorepo Packages
 │   ├── ui/                 # Shared React Components
-│   ├── eslint-config/      # Shared ESLint config
-│   └── typescript-config/  # Shared TS configs
-├── turbo.json              # Turborepo configuration
-└── README.md               # You are here
+│   ├── eslint-config/      # Shared ESLint Configuration
+│   └── typescript-config/  # Shared TypeScript Configuration
+├── scripts/                # Validation and Utility Scripts
+├── turbo.json              # Turborepo Configuration
+└── package.json            # Project Configuration
 ```
+
+## Testing
+
+The platform maintains high quality standards with comprehensive testing suites.
+
+```bash
+bun run test             # Run all tests
+bun run test:frontend    # Run Jest tests
+bun run test:backend     # Run Pytest tests
+```
+
+For detailed testing instructions, refer to [TESTING.md](TESTING.md).
