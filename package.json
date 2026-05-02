@@ -9,7 +9,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "test": "turbo run test",
-    "test:frontend": "turbo run test --filter=web",
+    "test:frontend": "turbo run test --filter=web --",
     "test:backend": "cd apps/api && pytest tests/ -v --cov=app",
     "test:watch": "turbo run test:watch",
     "test:coverage": "turbo run test:coverage",
