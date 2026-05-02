@@ -81,7 +81,7 @@ The platform implements standard enterprise design patterns to ensure a modular 
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/SatyamKumarCS/Revora
    cd Revora
    ```
 
